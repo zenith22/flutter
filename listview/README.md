@@ -1,6 +1,9 @@
 # listview
 
-A new Flutter project.
+A sample flutter app that will demonstrate
+- fetch data from api
+- parse jsonarray into a list object
+- display ListView in flutter
 
 ## Getting Started
 
