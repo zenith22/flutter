@@ -59,7 +59,20 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: _getScreen(),
+        body: Stack(children: [
+          Offstage(
+            offstage: _selectedIndex != 0,
+            child: const AddExpense(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 1,
+            child: const ListExpense(),
+          ),
+          Offstage(
+            offstage: _selectedIndex != 2,
+            child: const Dashboard(),
+          )
+        ]),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
