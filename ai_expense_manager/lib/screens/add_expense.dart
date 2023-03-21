@@ -23,7 +23,8 @@ class AddExpense extends StatefulWidget {
   State<AddExpense> createState() => _AddExpenseState();
 }
 
-class _AddExpenseState extends State<AddExpense> {
+class _AddExpenseState extends State<AddExpense>
+    with AutomaticKeepAliveClientMixin {
   String dropdownValue = list.first;
   final amountController = TextEditingController();
   final dateController = TextEditingController(
@@ -97,6 +98,7 @@ class _AddExpenseState extends State<AddExpense> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
@@ -150,4 +152,7 @@ class _AddExpenseState extends State<AddExpense> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

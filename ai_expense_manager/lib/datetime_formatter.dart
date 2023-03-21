@@ -15,6 +15,11 @@ class MyDateTimeFormatter {
     return formatter.format(DateTime.fromMillisecondsSinceEpoch(timestamp));
   }
 
+  static String getFormattedDateTime(DateTime dateTime) {
+    final dateTimeFormatter = DateFormat.yMd().add_jms();
+    return dateTimeFormatter.format(dateTime);
+  }
+
   static String getFormattedDateFromDateTime(DateTime timestamp) {
     return formatter.format(timestamp);
   }

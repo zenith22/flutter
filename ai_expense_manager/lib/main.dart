@@ -43,14 +43,19 @@ class _MyHomePageState extends State<MyHomePage> {
     const Dashboard()
   ];
 
+  final PageController pageController = PageController();
+
   void _onItemTapped(int index) {
     setState(() {
+      pageController.jumpToPage(index);
       _selectedIndex = index;
     });
   }
 
-  Widget _getScreen() {
-    return _screens[_selectedIndex];
+  void _onPageChanged(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override
@@ -59,8 +64,9 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: IndexedStack(
-          index: _selectedIndex,
+        body: PageView(
+          controller: pageController,
+          onPageChanged: _onPageChanged,
           children: _screens,
         ),
         bottomNavigationBar: BottomNavigationBar(
