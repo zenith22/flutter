@@ -1,20 +1,8 @@
+import 'package:ai_expense_manager/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_expense_manager/database.dart';
 import 'package:ai_expense_manager/datetime_formatter.dart';
 import 'package:ai_expense_manager/expense_model.dart';
-
-const List<String> list = <String>[
-  'Food',
-  'Electronics',
-  'Leisure',
-  'Medicine',
-  'Home',
-  'Masjid',
-  'Alms/Sadqa',
-  'Insurance',
-  'EMI',
-  'Misc'
-];
 
 class AddExpense extends StatefulWidget {
   const AddExpense({super.key});
@@ -25,14 +13,13 @@ class AddExpense extends StatefulWidget {
 
 class _AddExpenseState extends State<AddExpense>
     with AutomaticKeepAliveClientMixin {
-  String dropdownValue = list.first;
+  String dropdownValue = Constants.list.first;
   final amountController = TextEditingController();
   final dateController = TextEditingController(
       text: MyDateTimeFormatter.getFormattedDateFromDateTime(DateTime.now()));
   String? _amountErrorText;
 
   void _onCategorySelected(String? value) {
-    // This is called when the user selects an item.
     setState(() {
       dropdownValue = value!;
     });
@@ -66,7 +53,7 @@ class _AddExpenseState extends State<AddExpense>
 
     ExpenseModel expenseModel = ExpenseModel(
         expenseAmount: int.parse(expenseAmount),
-        expenseCategory: list.indexOf(dropdownValue),
+        expenseCategory: Constants.list.indexOf(dropdownValue),
         expenseDateTime: dateController.text);
     print('expenseModel = $expenseModel');
 
@@ -75,9 +62,6 @@ class _AddExpenseState extends State<AddExpense>
     _showToast('Expense added');
 
     amountController.text = '';
-
-    var list1 = await DatabaseHelper.instance.fetchExpenses();
-    print('fetch all data from db = $list1');
   }
 
   void _showToast(String message) {
@@ -126,7 +110,8 @@ class _AddExpenseState extends State<AddExpense>
                 color: Colors.black,
               ),
               onChanged: _onCategorySelected,
-              items: list.map<DropdownMenuItem<String>>((String value) {
+              items:
+                  Constants.list.map<DropdownMenuItem<String>>((String value) {
                 return DropdownMenuItem<String>(
                   value: value,
                   child: Text(value),

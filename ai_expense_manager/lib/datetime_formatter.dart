@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 class MyDateTimeFormatter {
-  static final formatter = DateFormat('dd-MM-yyyy');
+  static final formatter = DateFormat('dd-MMM-yyyy');
 
   static int getEpochTimeStamp(String date) {
     return formatter.parse(date).millisecondsSinceEpoch;
